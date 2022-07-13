@@ -3,16 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<!--   <typeAliases>-->
-<!--      <typeAlias type="com.mega.mvc14.MemberDTO" alias="dto"></typeAlias>-->
-<!--      <typeAlias type="com.mega.mvc14.BbsDTO" alias="bbsVo"></typeAlias>-->
-<!--      <typeAlias type="com.mega.mvc14.ProductDTO" alias="pro"></typeAlias>-->
-<!--      <typeAlias type="com.mega.mvc14.ReplyDTO" alias="replyVo"></typeAlias> -->
-<!--   </typeAliases>-->
-<!--   <mappers>-->
-<!--      <mapper resource="mapper/memberMapper.xml" />-->
-<!--      <mapper resource="mapper/bbsMapper.xml" />-->
-<!--      <mapper resource="mapper/productMapper.xml" />-->
-<!--      <mapper resource="mapper/replyMapper.xml" />-->
-<!--   </mappers>-->
+   <typeAliases>
+      <typeAlias type="com.diablo.ktr.user.dto.CustMgmtDTO" alias="dto"></typeAlias>
+   </typeAliases>
+   <mappers>
+      <mapper resource="mapper/user/memberMapper.xml" />
+   </mappers>
 </configuration>
