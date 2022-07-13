@@ -14,7 +14,36 @@
 	<logger name="com.diablo.ktr">
 		<level value="info" />
 	</logger>
-	
+
+	<!-- SQL Logger -->
+	<!--  SQL 쿼리 수행시간 표시.	-->
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+	</logger>
+
+	<!--  SQL 쿼리를 log로 남김.	-->
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="console"/>
+	</logger>
+
+	<logger name="jdbc.audit" additivity="false">
+		<level value="warn"/>
+		<appender-ref ref="console"/>
+	</logger>
+
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="console"/>
+	</logger>
+
+	<!-- SQL 결과를 table  형태로 logging	-->
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="console"/>
+	</logger>
+
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
