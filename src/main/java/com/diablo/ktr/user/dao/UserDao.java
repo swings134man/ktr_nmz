@@ -19,25 +19,25 @@ public class UserDao {
 
     // 고객 가입
     public int custEntr(CustMgmtDTO inDTO) {
-        int result = db.insert("",inDTO);
+        int result = db.insert("memberMapper.create",inDTO);
         return result;
     }
 
     // 고객 탈퇴
     public int custDelete(CustMgmtDTO inDTO) {
-        int result = db.delete("", inDTO);
+        int result = db.delete("memberMapper.delete", inDTO);
         return result;
     }
 
     // 고객 수정
     public int custUpdate (CustMgmtDTO inDTO) {
-        int result = db.update("", inDTO);
+        int result = db.update("memberMapper.update", inDTO);
         return result;
     }
 
     // 고객 login
     public String custLogin(CustMgmtDTO inDTO) {
-        String custPw = db.selectOne("", inDTO);
+        String custPw = db.selectOne("memberMapper.login", inDTO);
         return custPw;
     }
 

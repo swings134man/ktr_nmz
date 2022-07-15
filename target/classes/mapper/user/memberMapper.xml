@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
-<!--	<insert id="create" parameterType="dto">-->
-<!--		insert into MEMBER values (#{id},#{pw},#{name},#{tel})-->
-<!--	</insert>-->
-<!--	-->
+
+	<insert id="create" parameterType="dto">
+		insert into custM (
+			custNo, 		/*고객번호(Auto)*/
+			custEmal,		/*고객email*/
+			custId,			/*고객ID*/
+			custPw,			/*고객PW*/
+			custNm,			/*고객이름*/
+			custHphn,		/*고객핸드폰번호*/
+			custGen,		/*고객성별*/
+			custAge,		/*고객나이*/
+			custAddr		/*고객주소*/
+		)values(
+				   NULL,
+				   #{custEmal},
+				   #{custId},
+				   #{custPw},
+				   #{custNm},
+				   #{custHphn},
+				   #{custGen},
+				   #{custAge},
+				   #{custAddr}
+			   )
+	</insert>
+
 <!--	<select id="all" resultType="dto">-->
 <!--		select * from MEMBER-->
 <!--	</select>-->
@@ -13,14 +34,40 @@
 		select * from custM where custId = #{custId}
 	</select>
 	
-<!--	<delete id="del" parameterType="dto" >-->
-<!--		delete from MEMBER where id = #{id}-->
-<!--	</delete>-->
-<!--	-->
-<!--	<update id="up"></update>-->
-<!--	-->
-<!--	<select id="check2" parameterType="dto" resultType="dto" >-->
-<!--		select id from MEMBER where id = #{id}-->
-<!--	</select>-->
+	<delete id="delete" parameterType="dto" >
+		DELETE FROM custM
+		WHERE custID = #{custId}
+	</delete>
+
+	<update id="update" parameterType="dto">
+		UPDATE custM
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="custNm != null">
+				custNm = #{custNm},
+			</if>
+			<if test="custHphn != null">
+				custHphn = #{custHphn},
+			</if>
+			<if test="custGen != null">
+				custGen = #{custGen},
+			</if>
+			<if test="custAge != null">
+				custAge = #{custAge},
+			</if>
+			<if test="custAddr != null">
+				custAddr = #{custAddr},
+			</if>
+			<if test="custEmal != null">
+				custEmal = #{custEmal},
+			</if>
+		</trim>
+		WHERE custId = #{custId}
+	</update>
+
+	<select id="login" parameterType="dto" resultType="dto" >
+		SELECT custPw, custId
+		FROM custM
+		WHERE custId = #{custId}
+	</select>
 	
 </mapper>
