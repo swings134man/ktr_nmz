@@ -4,10 +4,7 @@ import com.diablo.ktr.user.dto.CustMgmtDTO;
 import com.diablo.ktr.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -27,12 +24,54 @@ public class UserController {
     * @return  : CustMgmtDTO
     */
     @GetMapping("/v1/one")
+    @ResponseBody
     public CustMgmtDTO custOne(@RequestParam String custId) {
 
         CustMgmtDTO out = userService.custOne(custId);
         return out;
     }
 
+    //고객 가입
+    @PostMapping("/v1/entr")
+    @ResponseBody
+    public String custEntr(@RequestBody CustMgmtDTO inDTO) {
+        String msg = userService.custEntr(inDTO);
+        return msg;
+    }
 
+    // 고객 탈퇴
+    @DeleteMapping("/v1/delete")
+    @ResponseBody
+    public String custDelete(@RequestParam String custId) {
+
+        CustMgmtDTO inDTO = CustMgmtDTO.builder()
+                                       .custId(custId)
+                                       .build();
+
+        String msg = userService.custDelete(inDTO);
+        return msg;
+    }
+
+    // 고객 수정
+    @PostMapping("v1/update")
+    @ResponseBody
+    public CustMgmtDTO custUpdate (CustMgmtDTO inDTO) {
+        CustMgmtDTO out = userService.custUpdate(inDTO);
+        return out;
+    }
+
+    // 고객 login
+    @PostMapping("v1/login")
+    @ResponseBody
+    public String custLogin(@RequestParam String custId, String custPw) {
+        CustMgmtDTO inDTO = CustMgmtDTO.builder()
+                                        .custId(custId)
+                                        .custPw(custPw)
+                                        .build();
+
+        String msg = userService.custLogin(inDTO);
+
+        return msg;
+    }
 
 }
